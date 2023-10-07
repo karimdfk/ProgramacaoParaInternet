@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A Clinica ABC Health é ua espaço destinado a cuidar da sua saúde. Com mais de 10 consultórios e 25 profissionais nós temos a solução para seu problema...">
+    <link rel="stylesheet" href="style.css">
+    <script src="docJS.js"></script>
+    <title>Clinica ABC Health</title>
+</head>
+
+<body>
+    <header>
+        <h1>Clinica ABC Health</h1>
+    </header>
+
+    <nav>
+        <section>
+            <ul>
+                <li><button>Home</button>|</li>
+                <li><button>Galeria</button>|</li>
+                <li><button>Cadastro</button>|</li>
+                <li><button>Contato</button></li>
+            </ul>
+        </section>
+    </nav>
+
+
+    <main>
+        <div class="tabs">
+
+            <section>
+                <h2>Bem vindo à Clinica ABC Health</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum doloremque quibusdam blanditiis
+                    voluptatibus
+                    natus laudantium! Voluptate, numquam repudiandae hic saepe eos illum aut ducimus obcaecati, rem
+                    delectus
+                    dolore, corporis adipisci.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptates doloribus nesciunt aliquid
+                    fugit
+                    maiores odit accusamus ad cum consectetur nisi iusto, provident dolorem velit porro officia vero
+                    dicta. Ad.
+                </p>
+                <h2>Nossa Missão</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil laboriosam autem iste itaque hic
+                    excepturi
+                    veritatis quasi, placeat laborum cum tenetur voluptatum. Veritatis iusto quod id aspernatur
+                    asperiores
+                    pariatur iste?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, debitis nobis dolorem architecto, aut
+                    minima,
+                    quas impedit illum eum nostrum aliquid at enim recusandae tempore delectus cum quibusdam ab
+                    possimus!</p>
+                <h2>Nossos Valores</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia hic eligendi, dolorum nesciunt
+                    quisquam
+                    explicabo, veniam ut odio numquam repudiandae aut esse, laborum quidem labore porro inventore vitae
+                    eos
+                    distinctio.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis saepe similique voluptas labore
+                    rerum?
+                    Facilis, reiciendis maxime aliquid esse ad ut iusto laudantium perferendis fugit in a accusantium
+                    totam
+                    consectetur!</p>
+            </section>
+
+
+            <section>
+                <h2>Nossa Estrutura</h2>
+                <table>
+                    <tr>
+                        <td><img src="images/clinica1.jpg" alt="clinica1" width="250" height="250"></td>
+                        <td><img src="images/clinica2.jpg" alt="clinica2" width="250" height="250"></td>
+                        <td><img src="images/clinica3.jpg" alt="clinica3" width="250" height="250"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="images/clinica1.jpg" alt="clinica1" width="250" height="250"></td>
+                        <td><img src="images/clinica2.jpg" alt="clinica2" width="250" height="250"></td>
+                        <td><img src="images/clinica4.jpg" alt="clinica4" width="250" height="250"></td>
+                    </tr>
+                </table>
+            </section>
+
+
+            <section>
+                <form action="cadastraCliente.php" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>Dados pessoais: </legend>
+                        <div>
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" required autofocus minlength="2" maxlength="50">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                                placeholder="XXX.XXX.XXX-XX">
+                        </div>
+                        <div>
+                            <label for="idade">Idade</label>
+                            <input type="number" id="idade" name="idade" required>
+                        </div>
+                        <div>
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div>
+                            <label for="nascimento">Data de Nascimento</label>
+                            <input type="date" id="nascimento" name="nascimento">
+                        </div>
+                        <div>
+                            <label for="sexo">Sexo</label>
+                            <input type="text" id="sexo" name="sexo">
+                        </div>
+                        <div>
+                            <label for="clienteganhador">Ganhou Promoção</label>
+                            <input type="text" id="clienteganhador" name="clienteganhador" readonly value="NÃO">
+                        </div>
+
+                        <fieldset>
+                            <legend>Escolha o Estado Civil</legend>
+                            <div>
+                                <input type="radio" id="solteiro" name="estadocivil" value="solteiro">
+                                <label for="solteiro">Solteiro</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="casado" name="estadocivil" value="casado">
+                                <label for="casado">Casado</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="divorciado" name="estadocivil" value="divorciado">
+                                <label for="divorciado">Divorciado</label>
+                            </div>
+
+                            <div>
+                                <input type="hidden" name="escondido" value="escondido">
+                            </div>
+                        </fieldset>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Endereço: </legend>
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" required>
+                        </div>
+                        <div>
+                            <label for="tipologradouro">Tipo de Logradouro</label>
+                            <select name="tipologradouro" id="tipologradouro">
+                                <option value="RU">Rua</option>
+                                <option value="AV">Avenida</option>
+                                <option value="PC">Praça</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="logradouro">Logradouro</label>
+                            <input type="text" id="logradouro" name="logradouro" required>
+                        </div>
+                        <div>
+                            <label for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro" required>
+                        </div>
+                        <div>
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" required>
+                        </div>
+                        <div>
+                            <label for="estado">Sexo</label>
+                            <input type="text" id="estado" name="estado" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Informações Adicionais: </legend>
+                        <fieldset>
+                            <legend>Seção de Interesses: </legend>
+                            <div>
+                                <label for="filmes">Filmes</label>
+                                <input type="checkbox" id="filmes" name="filmes" value="filmes">
+                            </div>
+                            <div>
+                                <label for="informatica">Informatica</label>
+                                <input type="checkbox" id="informatica" name="informatica" value="informatica">
+                            </div>
+                            <div>
+                                <label for="games">Games</label>
+                                <input type="checkbox" id="games" name="games" value="games">
+                            </div>
+                            <div>
+                                <label for="livros">Livros</label>
+                                <input type="checkbox" id="livros" name="livros" value="livros">
+                            </div>
+                            <div>
+                                <label for="roupas">Roupas</label>
+                                <input type="checkbox" id="roupas" name="roupas" value="roupas">
+                            </div>
+
+                        </fieldset>
+                        <div>
+                            <label for="infocomplementar">Informações Complementares</label>
+                            <textarea name="infocomplementar" id="infocomplementar" cols="30" rows="10"></textarea>
+                        </div>
+
+                        <div>
+                            <input type="file" accept="image/*">
+                        </div>
+
+                        <button>Enviar</button>
+
+                    </fieldset>
+
+                </form>
+            </section>
+
+
+
+            <section>
+                <form name="formContato" action="registraContato.php" method="post">
+
+                    <div>
+                        <label for="nomeContato">Nome:</label>
+                        <input type="text" id="nomeContato" name="nomeContato">
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <label for="emailContato">Email:</label>
+                        <input type="email" id="emailContato" name="emailContato">
+                        <span></span>
+                    </div>
+                    <div>
+                        <label for="mensagemContato" id="labelMensagem">Mensgem:</label>
+                        <textarea name="mensagemContato" id="mensagemContato" cols="30" rows="10"></textarea>
+                        <span></span>
+                    </div>
+
+                    <button>Enviar</button>
+
+                </form>
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+    <footer>
+        <address>Av. João Naves de Ávila, Santa Mônica, Uberlândia</address>
+    </footer>
+
+</body>
+
+</html>

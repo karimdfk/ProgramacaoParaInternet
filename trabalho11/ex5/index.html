@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Exemplos de Acesso a Banco de Dados</title>
+</head>
+
+<style>
+  body {
+    padding-top: 3rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  a:link,
+  a:visited,
+  a:active {
+    color: #555;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1em;
+    background-color: #eee;
+    border: 0.5px solid lightgray;
+    padding: 10px;
+    margin: 5px auto;
+    width: 400px;
+  }
+
+  a:hover {
+    background-color: #dedede;
+  }
+</style>
+
+<body>
+  <a href="login/index.html">login</a>
+  <a href="cadastro/index.html">cadastro</a>
+
+  <div style="margin: 20px auto; width: 70%; background-color: #eee;">
+    <p>O login funciona utilizando as informações de email e senha hash gravadas no banco e comparando com aquelas
+      digitadas pelo usuário, casos sejam iguais, cria-se uma session e o usuário é redirecionado para a home</p>
+    <p>Na home ocorre a verificação da session, por meio da função exitWhenNotLoggedIn, caso a session não exista o
+      usuário é redirecionado para index.html</p>
+    <p>Assim, quando algum usuário tenta acessar a página home.php digitando o endereço diretamente na barra de
+      endereços do navegador ele é impedido por essa função</p>
+  </div>
+
+</body>
+
+</html>

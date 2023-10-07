@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Login</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .styleMainLogin {
+            max-width: 300px;
+            height: 275px;
+
+            background-color: white;
+            border-radius: 10px;
+            border: 2px solid #f7ceb0;
+
+            margin-top: 50px;
+            padding: 40px;
+
+            color: #c24b59;
+        }
+
+        .styleInputLogin {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 7px 0px;
+            margin: 15px 0px;
+            border: 1px solid #f7ceb0;
+        }
+
+        .styleButtonLogin {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 7px 0px;
+            margin: 15px 0px 0px 0px;
+            border: 1px solid #f7ceb0;
+            background-color: #f6e6da;
+            color: #c24b59;
+        }
+
+        .styleLabelLogin {
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 16pt;
+        }
+
+        @media screen and (max-width: 824px) {
+    .logo {
+        left: 80%;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin: 10px 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+
+    main {
+        width: 90%;
+    }
+
+    .logo {
+        left: 80%;
+        width: 70px;
+        height: 70px;
+    }
+
+    .buttonBuscarAvancado {
+        width: 80%;
+    }
+
+    .divBA {
+        width: 100%;
+    }
+
+    nav{
+        padding-bottom:35px;
+    }
+
+    #buscasimples {
+        width:60px;
+        height: 12px;
+    }
+    #buttonBuscaSilmples{
+        font-size: 10px;
+    }
+    
+    #formBuscaSimples{
+        float: none;
+    }
+
+}
+    </style>
+</head>
+
+
+
+<body>
+
+    <header>
+        <h1> Mirage</h1>
+        <img src="../../img/logo.png" id="logo" alt="logo" width="80px" height="80px" class="logo">
+    </header>
+
+    <nav>
+        <section>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="../cadastro/cadastroUsuario.html">Cadastro</a></li>
+            </ul>
+        </section>
+    </nav>
+
+
+    <main class="styleMainLogin">
+        <div class="login-page">
+
+            <form action="../../sessao/loginAnunciante.php" method="post">
+                <div>
+                    <label for="mailLogin" class="styleLabelLogin">Email</label>
+                    <input type="email" name="mailLogin" id="mailLogin" class="styleInputLogin" required>
+                </div>
+
+                <div>
+                    <label for="passwordLogin" class="styleLabelLogin">Senha</label>
+                    <input type="password" name="passwordLogin" id="passwordLogin" class="styleInputLogin" required>
+                </div>
+
+                <div id="mensagemErro" style="display: none;">
+                    <p>E-mail ou senha incorretos</p>
+                </div>
+
+                <button type="button" class="styleButtonLogin" id="btnLogin">Login</button>
+            </form>
+        </div>
+
+        <p style="text-align: center;">Não tem uma conta? <a href="../cadastro/cadastroUsuario.html">Cadastre-se</a></p>
+    </main>
+
+    <footer>
+        <address>Av. João Naves de Ávila, Santa Mônica, Uberlândia</address>
+    </footer>
+
+    <script>
+        async function efetuaLogin() {
+            const inputEmail = document.querySelector("#mailLogin");
+            const inputSenha = document.querySelector("#passwordLogin");
+
+            let meuForm = document.querySelector("form");
+            let formData = new FormData(meuForm);
+
+
+            const options = {
+                method: "POST",
+                body: formData
+            }
+
+            let response = await fetch(`../../sessao/loginAnunciante.php?mailLogin=${inputEmail}&passwordLogin=${inputSenha}`, options);
+            if (!response.ok) throw new Error(response.statusText);
+            let responseJS = await response.json();
+
+            if (responseJS.success) {
+                window.location = responseJS.detail;
+            }
+            else {
+                document.querySelector("#mensagemErro").style.display = 'block';
+                inputSenha.value = "";
+                inputSenha.focus();
+            }
+        }
+
+        window.onload = function () {
+            const btn = document.querySelector("#btnLogin");
+            btn.addEventListener("click", efetuaLogin);
+
+        }
+    </script>
+</body>
+
+
+
+</html>

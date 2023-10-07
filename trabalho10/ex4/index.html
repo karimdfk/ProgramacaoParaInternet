@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        #divAcoes {
+            width: 50%;
+            margin: 20px auto;
+            color: rgb(97, 97, 97);
+            background-color: rgb(238, 238, 238);
+            display: none;
+            padding: 20px;
+        }
+
+        button {
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="" method="get" class="container">
+
+        <div class="row">
+            <div class="col">
+                <label for="cod1" class="form-label">1o:</label>
+                <input type="text" name="cod1" id="cod1" class="form-control">
+            </div>
+            <div class="col">
+                <label for="cod2" class="form-label">2o:</label>
+                <input type="text" name="cod2" id="cod2" class="form-control">
+            </div>
+            <div class="col">
+                <label for="cod3" class="form-label">3o:</label>
+                <input type="text" name="cod3" id="cod3" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="cod4" class="form-label">4o:</label>
+                <input type="text" name="cod4" id="cod4" class="form-control">
+            </div>
+            <div class="col">
+                <label for="cod5" class="form-label">5o:</label>
+                <input type="text" name="cod5" id="cod5" class="form-control">
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="btnseq">Cotar sequencialmente</button>
+        <button type="button" class="btn btn-primary" id="btnpar">Cotar em paralelo</button>
+    </form>
+
+
+
+    <div id="divAcoes">
+        <h1>Cotações das ações indicadas</h1>
+
+        <hr>
+
+    </div>
+
+
+    <script>
+        function getQuote(codigoAcao) {
+            return fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${codigoAcao}.SA&apikey=AUB5VFRTS3G8AVG5`)
+                .then(response => response.json())
+                .then(data => data['Global Quote'])
+                .then(parametro => RenderStock(parametro))
+        }
+
+        function paralelo() {
+
+            form = document.querySelector("form");
+
+            Promise.all([
+                getQuote(form.cod1.value),
+                getQuote(form.cod2.value),
+                getQuote(form.cod3.value),
+                getQuote(form.cod4.value),
+                getQuote(form.cod5.value)
+            ])
+                .then(cotacoes => console.log(cotacoes))
+                .catch(error => console.log(error))
+        }
+
+        function sequencial() {
+            form = document.querySelector("form");
+
+            fetch(getQuote(form.cod1.value))
+                .then(cotacoes => console.log(cotacoes))
+                .then(response => getQuote(form.cod2.value))
+                .then(cotacoes => console.log(cotacoes))
+                .then(response => getQuote(form.cod3.value))
+                .then(cotacoes => console.log(cotacoes))
+                .then(response => getQuote(form.cod4.value))
+                .then(cotacoes => console.log(cotacoes))
+                .then(response => getQuote(form.cod5.value))
+                .then(cotacoes => console.log(cotacoes))
+                .catch(error => console.log(error))
+        }
+
+        function RenderStock(objeto) {
+            let div = document.querySelector("#divAcoes");
+            div.style.display = "block";
+            let novop = document.createElement("p");
+
+            div.appendChild(novop);
+
+            novop.textContent = objeto['01. symbol'] + ': ' + objeto['05. price'];
+        }
+
+        window.onload = function () {
+            btnseq = document.querySelector("#btnseq");
+            btnpar = document.querySelector("#btnpar");
+            btnseq.addEventListener("click", sequencial);
+            btnpar.addEventListener("click", paralelo);
+        }
+
+    </script>
+</body>
+
+</html>

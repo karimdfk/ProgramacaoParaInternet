@@ -1,0 +1,352 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #c24b59;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+nav {
+    width: 100%;
+    margin: 0 auto 10px auto;
+    padding: 10px 0px;
+    border: 1px solid #f7ceb0;
+}
+
+nav ul {
+    list-style: none;
+    padding-left: 10;
+    margin: 0;
+
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0px 30px 0px 0px;
+    text-transform: uppercase;
+}
+
+nav a {
+    text-decoration: none;
+    color: #c24b59;
+}
+
+
+#divBuscaSimples {
+    display: inline-block;
+}
+
+#buscasimples {
+    display: inline-block;
+    border-color: #c24b59;
+    border-width: 2 px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#buscasimpleslabel {
+    color: #c24b59;
+}
+
+#buttonBuscaSilmples {
+    background-color: #c24b59;
+    color: white;
+    border-color: #c24b59;
+    border-style: solid;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+
+#formBuscaAvancada {
+    display: none;
+    width: 98%;
+    margin: 0 auto;
+    border: 2px solid #f7ceb0;
+    border-radius: 10px;
+    color: #c24b59;
+}
+
+.buttonBuscaAvancada {
+    margin-right: 50px;
+}
+
+.buttonBuscarAvancado {
+    background-color: #c24b59;
+    color: white;
+    border-color: #c24b59;
+    border-style: solid;
+    border-radius: 3px;
+    margin-right: 20px;
+
+    display: block;
+    width: 60%;
+    margin: 0px auto 20px auto;
+}
+
+.divBuscaAvancada {
+    width: 100%;
+    margin: 10px auto;
+    text-align: right;
+}
+
+.labelBA {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16pt;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16pt;
+}
+
+.inputBA {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 7px 0px;
+    margin: 15px 0px;
+    border: 1px solid #f7ceb0;
+}
+
+.divBA {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 30%;
+}
+
+
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.titulo-principal {
+    display: inline-block;
+}
+
+.logo {
+    box-shadow: 0 0 3px #c24b59;
+    position: absolute;
+    left: 90%;
+}
+
+header {
+    padding: 10px 0px;
+    color: #f6e6da;
+    background-color: #c24b59;
+}
+
+h1 {
+    display: block;
+    font-size: 50px;
+    margin: 10px 40px;
+}
+
+footer {
+    width: 80%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.cardAnuncioEsq {
+    width: 48%;
+    height: 260px;
+    display: inline-block;
+    margin: 10px 10px 10px 10px;
+    background-color: white;
+
+    border: 2px solid #f7ceb0;
+    border-radius: 10px;
+}
+
+.cardAnuncioDir {
+    width: 48%;
+    height: 260px;
+    display: inline-block;
+    margin: 10px 0px 10px 0px;
+    background-color: white;
+
+    border: 2px solid #f7ceb0;
+    border-radius: 10px;
+}
+
+.imgAnuncio {
+    position: relative;
+    top: 20px;
+    left: 55px;
+}
+
+h3 {
+    margin: 0px 0px 0px 50px;
+    font-size: 22px;
+}
+
+.preco {
+    color: limegreen;
+    margin: 0px 0px 0px 50px;
+    font-size: 22px;
+}
+
+.separacao {
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+    left: 50px;
+    width: 60%;
+}
+
+.descricao {
+    width: 75%;
+    margin: 0 auto;
+    height: 90px;
+    position: relative;
+    top: 10px;
+    overflow: hidden;
+}
+
+.bttn-compra {
+    background-color: #c24b59;
+    color: white;
+    margin-left: 50px;
+    margin-top: 3px;
+    padding: 5px;
+    border-color: #c24b59;
+    border-style: solid;
+    border-radius: 3px;
+
+}
+
+
+.buttonBuscaAvancada {
+    background-color: #c24b59;
+    color: white;
+    border-color: #c24b59;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 824px) {
+    .logo {
+        left: 80%;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin: 10px 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+
+    main {
+        width: 90%;
+    }
+
+    .logo {
+        left: 80%;
+        width: 70px;
+        height: 70px;
+    }
+
+    .buttonBuscarAvancado {
+        width: 80%;
+    }
+
+    .divBA {
+        width: 100%;
+    }
+
+    nav{
+        padding-bottom:35px;
+    }
+
+    #buscasimples {
+        width:60px;
+        height: 12px;
+    }
+    #buttonBuscaSilmples{
+        font-size: 10px;
+    }
+    
+    #formBuscaSimples{
+        float: none;
+    }
+
+}
+
+.item {
+    background-color: white;
+    width: 80%;
+    margin: 1rem auto;
+    border: 2px solid #f7ceb0;
+    border-radius: 10px;
+}
+
+.item-image {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 0;
+}
+
+.item-titulo {
+    font: 2em Verdana;
+    color: #888;
+    display: block;
+}
+
+.item-preco {
+    font: 1em Verdana;
+    color: darkgreen;
+    display: block;
+}
+
+.item-preco::before {
+    content: 'R$ ';
+}
+
+.item-desc {
+    font: 1em Verdana;
+    display: block;
+    height: 90px;
+    overflow: hidden;
+}
+
+.item-comprar {
+    text-decoration: none;
+    color: #c24b59;
+}
+
+.separa1 {
+    display: inline-block;
+    width: 25%;
+    margin: 0;
+}
+
+.separa2 {
+    display: inline-block;
+    width: 45%;
+    margin: 0px 0px 20px 10px;
+}
+
+.separa3 {
+    display: inline-block;
+    width: 15%;
+    margin: 0px 0px 20px 10px;
+}

@@ -1,0 +1,90 @@
+input:invalid+span::after {
+    content: '✖';
+    color: red;
+}
+
+input:valid+span::after {
+    content: '✓';
+    color: limegreen;
+}
+
+body {
+    background-color: #ddd;
+    font-family: "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+    width: 60%;
+    margin: 0 auto;
+    padding: 2% 0;
+}
+
+header,
+footer,
+nav {
+    background-color: #555;
+    color: #eee;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5px 0px 0px 0px;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 0;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+main {
+    background-color: white;
+    margin: 0px;
+    padding: 10px;
+}
+
+fieldset {
+    padding: 10px;
+    text-align: left;
+    margin: 20px;
+}
+
+.ajusta {
+    display: block;
+    margin: 0;
+}
+
+
+#infocomplementar,
+#infocomplabel {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+button {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 7px 0px;
+    border: 1px solid gray;
+}
+
+label {
+    margin: 20px 0px;
+}
+
+.arqimg {
+    width: 50%;
+    margin: 0 auto;
+}

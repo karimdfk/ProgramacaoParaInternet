@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rolagem Infinita</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #dedede;
+      font-family: Helvetica;
+      width: 60%;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #888;
+    }
+
+    .item {
+      background-color: white;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .item-image {
+      width: 150px;
+      height: 150px;
+      margin: 0 2rem;
+    }
+
+    .item-name {
+      font: 2em Verdana;
+      color: #888;
+    }
+
+    .item-price {
+      font: 2em Verdana;
+      color: darkgreen;
+      margin-left: 2rem;
+    }
+
+    .item-price::before {
+      content: 'R$ ';
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="products">
+    <h2>Nossos produtos</h2>
+
+    <template
+      id="template"><!-- Este elemento não é renderizado quando a página é carregada, mas pode ser clonado e utilizado com ajuda de códigos JS -->
+      <div class="item"> <!-- Div que será usado como modelo -->
+        <img class="item-image" src="images/{{prod-image}}"></img>
+        <span class="item-name">{{prod-name}}</span>
+        <span class="item-price">{{prod-price}}</span>
+      </div>
+    </template>
+
+  </section>
+
+  <script>
+
+    function renderProducts(newProducts) {
+
+      const prodsSection = document.getElementById("products");//A constante prodSection recebe a section pelo id "products"
+      const template = document.getElementById("template");//A constante template recebe o template
+
+      for (let product of newProducts) {//Utiliza o objeto JS passado como parâmetro para completar as informações do template
+        let html = template.innerHTML
+          .replace("{{prod-image}}", product.imagePath)
+          .replace("{{prod-name}}", product.name)
+          .replace("{{prod-price}}", product.price);
+
+        prodsSection.insertAdjacentHTML("beforeend", html);//Insere no final da "prodsSection" a variável html previamente setada com os valores de interesse 
+      };
+    }
+
+    async function loadProducts() {
+
+      try {
+        let response = await fetch("more-products.php");//Chama o scrypt php de forma assíncrona
+        if (!response.ok) throw new Error(response.statusText);//Verifica possível erro na chamada do fetch acima
+        var products = await response.json();//Pega a resposta em json e transforma em objeto JS de forma assíncrona
+      }
+      catch (e) {//trata possíveis erros
+        console.error(e);
+        return;
+      }
+
+      renderProducts(products);//Chama a função "renderProducts" com "products" como parâmetro
+    }
+
+    window.onload = function () {//Chama a função "loadProducts" quando a pagina é carregada
+      loadProducts();
+    }
+
+    window.onscroll = function () {//Chama a função "loadProducts" quando a pagina é rolada até o final
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        loadProducts();
+      }
+    };
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mirage</title>
+
+    <style>
+        main {
+            font-family: Helvetica;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .item {
+            background-color: white;
+            width: 80%;
+            margin: 1rem auto;
+            border: 2px solid #f7ceb0;
+            border-radius: 10px;
+        }
+
+        .item-image {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin: 0;
+        }
+
+        .item-titulo {
+            font: 2em Verdana;
+            color: #888;
+            display: block;
+        }
+
+        .item-preco {
+            font: 1.4em Verdana;
+            color: darkgreen;
+            display: block;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .item-preco::before {
+            content: 'R$ ';
+        }
+
+        .item-desc {
+            font: 1em Verdana;
+            display: block;
+            height: 90px;
+            overflow: hidden;
+        }
+
+        .item-comprar {
+            text-decoration: none;
+            color: white;
+        }
+
+        .separa1 {
+            display: inline-block;
+            width: 25%;
+            height: 100%;
+            margin: 5px;
+            vertical-align: top;
+        }
+
+        .separa2 {
+            display: inline-block;
+            width: 45%;
+            height: 100%;
+            margin: 5px;
+            vertical-align: top;
+        }
+
+        .separa3 {
+            display: inline-block;
+            width: 20%;
+            height: 100%;
+            margin: 5px;
+            vertical-align: top;
+        }
+
+        .item-btn {
+            background-color: #c24b59;
+            color: white;
+            border-color: #c24b59;
+            border-style: solid;
+            border-radius: 3px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1 class="titulo-principal">
+            Mirage
+        </h1>
+        <img src="img/logo.png" class="logo" alt="logo" width="80px" height="80px">
+    </header>
+
+    <nav>
+        <section>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="usuario/login/login.html">Login</a></li>
+                <li><a href="usuario/cadastro/cadastroUsuario.html">Cadastro</a></li>
+                <li style="float: right;">
+                    <form id="formBuscaSimples" action="buscaSimples.php" method="post">
+                        <div id="divBuscaSimples">
+                            <label for="buscasimples" id="buscasimpleslabel">Busca</label>
+                            <input type="text" id="buscasimples" name="buscasimples">
+                        </div>
+                        <button id="buttonBuscaSilmples">Ok</button>
+                    </form>
+                </li>
+            </ul>
+        </section>
+    </nav>
+
+    <main>
+
+        <div class="divBuscaAvancada">
+            <button class="buttonBuscaAvancada">Busca Avançada</button>
+        </div>
+
+
+        <form action="buscaAvancada.php" method="post" id="formBuscaAvancada">
+
+            <h2 style="text-align: center;">Busca Avançada</h2>
+
+
+            <div style="width: 90%; margin: 0 auto;">
+                <div class="divBA">
+                    <label for="textoPesquisa" class="labelBA">Buscar</label>
+                    <input type="text" id="textoPesquisa" class="inputBA" name="textoPesquisa" required>
+                </div>
+                <div class="divBA">
+                    <label for="precoMinimo" class="labelBA">Preço Mínimo</label>
+                    <input type="number" id="precoMinimo" class="inputBA" name="precoMinimo" required>
+                </div>
+                <div class="divBA">
+                    <label for="precoMaximo" class="labelBA">Preço Máximo</label>
+                    <input type="number" id="precoMaximo" class="inputBA" name="precoMaximo" required>
+                </div>
+
+                <div class="divBA">
+                    <label for="categoria" class="labelBA">Categoria</label>
+                    <select required name="categoria" id="categoria" class="inputBA">
+                        <option selected value="Todas">Todas</option>
+                    </select>
+                </div>
+
+                <div class="divBA">
+                    <label for="localBusca" class="labelBA">Onde Fazer A Busca</label>
+                    <select required name="localBusca" id="localBusca" class="inputBA">
+                        <option selected value="titulo">Titulo</option>
+                        <option value="descricao">Descricao</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="buttonBuscarAvancado">Buscar</button>
+        </form>
+
+
+        <section id="products">
+            <h2>Nossos produtos</h2>
+
+            <template
+                id="template"><!-- Este elemento não é renderizado quando a página é carregada, mas pode ser clonado e utilizado com ajuda de códigos JS -->
+                <div class="item"> <!-- Div que será usado como modelo -->
+                    <div class="separa1">
+                        <img class="item-image" src="img/imgAnuncios/{{prod-image}}"></img>
+                    </div>
+                    <div class="separa2">
+                        <span class="item-titulo">{{prod-titulo}}</span>
+                        <span class="item-desc">{{prod-descricao}}</span>
+                    </div>
+
+                    <div class="separa3">
+                        <span class="item-preco">{{prod-preco}}</span>
+                        <button type="button" class="item-btn"><a class="item-comprar"
+                                href="anuncio/mostraAnuncio.php?cod={{prod-cod}}">Comprar</a></button>
+                    </div>
+
+                </div>
+            </template>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <address>Av. João Naves de Ávila, Santa Mônica, Uberlândia</address>
+    </footer>
+
+    <script>
+        function mostraBA() {
+            const formBA = document.querySelector("#formBuscaAvancada");
+            const botaoBA = document.querySelector(".buttonBuscaAvancada");
+
+            if (botaoBA.textContent === "Fechar") {
+                botaoBA.textContent = "Busca Avançada";
+                formBA.style.display = "none";
+            }
+            else {
+                botaoBA.textContent = "Fechar";
+                formBA.style.display = "block";
+            }
+        }
+
+        function renderProducts(newProducts) {
+
+            const prodsSection = document.getElementById("products");//A constante prodSection recebe a section pelo id "products"
+            const template = document.getElementById("template");//A constante template recebe o template
+
+            for (let product of newProducts) {//Utiliza o objeto JS passado como parâmetro para completar as informações do template
+
+                let html = template.innerHTML
+                    .replace("{{prod-image}}", product.imagePath)
+                    .replace("{{prod-titulo}}", product.titulo)
+                    .replace("{{prod-preco}}", product.preco)
+                    .replace("{{prod-descricao}}", product.descricao)
+                    .replace("{{prod-cod}}", product.cod);
+
+                prodsSection.insertAdjacentHTML("beforeend", html);//Insere no final da "prodsSection" a variável html previamente setada com os valores de interesse     
+            }
+        }
+
+
+        async function loadProducts() {
+
+            try {
+                let response = await fetch("carregaProdutos.php?posicao=" + posicaoAtualGeral);//Chama o scrypt php de forma assíncrona
+                if (!response.ok) throw new Error(response.statusText);//Verifica possível erro na chamada do fetch acima
+                var products = await response.json();//Pega a resposta em json e transforma em objeto JS de forma assíncrona
+            }
+            catch (e) {//trata possíveis erros
+                console.error(e);
+                return;
+            }
+
+            var verifica = -1;
+
+            if (verifica != posicaoAtualGeral) {//tratando erro no caso da posicaoAtualGeral = 6 com 7 anuncios cadastrados (duplicava o 1o anuncio)
+                renderProducts(products);
+                verifica = posicaoAtualGeral;
+                posicaoAtualGeral += products.length;
+            }
+
+        }
+
+        async function buscaSimples(bs) {
+            const n = 2;
+            trataScroll(n);
+
+            if (bs === 0) {
+                posicaoAtualBuscaSimples = 0;
+                var ajudaRemover = document.querySelector('#products');
+                var filhosRemovidos = ajudaRemover.querySelectorAll(".item");
+
+                for (var i = 0; i < filhosRemovidos.length; i++) {
+                    ajudaRemover.removeChild(filhosRemovidos[i]);
+                }
+            }
+
+            const inputBS = document.querySelector("#buscasimples");
+
+            const formData = new FormData();
+            formData.append('buscasimples', inputBS.value);
+            formData.append('posicao', posicaoAtualBuscaSimples);
+
+
+            const options = {
+                method: "POST",
+                body: formData
+            }
+
+            let response = await fetch(`buscaSimples.php`, options);
+            if (!response.ok) throw new Error(response.statusText);
+            let responseJS = await response.json();
+
+
+            var verifica = -1;
+
+            if (verifica != posicaoAtualBuscaSimples) {//tratando erro no caso da posicaoAtualGeral = 6 com 7 anuncios cadastrados (duplicava o 1o anuncio)
+                renderProducts(responseJS);
+                verifica = posicaoAtualBuscaSimples;
+                posicaoAtualBuscaSimples += responseJS.length;
+            }
+
+        }
+
+        async function buscaAvancada(ba) {
+            const formBA = document.querySelector("#formBuscaAvancada");
+            const botaoBA = document.querySelector(".buttonBuscaAvancada");
+
+            if (botaoBA.textContent === "Fechar") {
+                botaoBA.textContent = "Busca Avançada";
+                formBA.style.display = "none";
+            }
+
+            const n = 3; //Altera o tratamento do evento Scroll
+            trataScroll(n);
+
+            if (ba === 0) {
+                posicaoAtualBuscaAvancada = 0;
+                var ajudaRemover = document.querySelector('#products');
+                var filhosRemovidos = ajudaRemover.querySelectorAll(".item");
+
+                for (var i = 0; i < filhosRemovidos.length; i++) {
+                    ajudaRemover.removeChild(filhosRemovidos[i]);
+                }
+            }
+
+            const textoPesquisa = document.querySelector("#textoPesquisa");
+            const precoMinimo = document.querySelector("#precoMinimo");
+            const precoMaximo = document.querySelector("#precoMaximo");
+            const categoria = document.querySelector("#categoria");
+            const localBusca = document.querySelector("#localBusca");
+
+
+            const formData = new FormData();
+            formData.append('textoPesquisa', textoPesquisa.value);
+            formData.append('precoMinimo', precoMinimo.value);
+            formData.append('precoMaximo', precoMaximo.value);
+            formData.append('categoria', categoria.value);
+            formData.append('localBusca', localBusca.value);
+            formData.append('posicao', posicaoAtualBuscaAvancada);
+
+
+            const options = {
+                method: "POST",
+                body: formData
+            }
+
+            let response = await fetch(`buscaAvancada.php`, options);
+            if (!response.ok) throw new Error(response.statusText);
+            let responseJS = await response.json();
+
+
+            var verifica = -1;
+
+            if (verifica != posicaoAtualBuscaAvancada) {//tratando erro no caso da posicaoAtualGeral = 6 com 7 anuncios cadastrados (duplicava o 1o anuncio)
+                renderProducts(responseJS);
+                verifica = posicaoAtualBuscaAvancada;
+                posicaoAtualBuscaAvancada += responseJS.length;
+            }
+        }
+
+        async function carregaCategoria() {
+
+            let response = await fetch(`carregaCategoria.php`);
+            if (!response.ok) throw new Error(response.statusText);
+            let categorias = await response.json();
+
+            const select = document.querySelector("#categoria")
+
+            for (let categoria of categorias) {//Utiliza o objeto JS passado como parâmetro para completar as informações do template
+                var novoOption = document.createElement("option");
+                novoOption.textContent = categoria.nome;
+                novoOption.setAttribute("value", categoria.nome);
+                select.appendChild(novoOption);
+            }
+        }
+
+
+        window.onload = function () {
+            carregaCategoria();
+            loadProducts();
+            const n = 1;
+            trataScroll(n);
+
+
+            const bs = 0;
+            const ba = 0;
+
+            const botaoBA = document.querySelector(".buttonBuscaAvancada");
+            botaoBA.addEventListener("click", mostraBA);
+
+
+            const formBuscaSimples = document.querySelector("#formBuscaSimples");
+            formBuscaSimples.addEventListener("submit", function (event) {
+                event.preventDefault();
+                buscaSimples(bs);
+            });
+
+            const formBuscaAvancada = document.querySelector("#formBuscaAvancada");
+            formBuscaAvancada.addEventListener("submit", function (event) {
+                event.preventDefault();
+                buscaAvancada(ba);
+            });
+
+        }
+
+        function trataScroll(n) {
+            if (n === 1) {
+                window.onscroll = function () {//Chama a função "loadProducts" quando a pagina é rolada até o final
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        loadProducts();
+                    }
+                };
+            }
+
+            if (n === 2) {
+                window.onscroll = function () {//Chama a função "buscaSimples" quando a pagina é rolada até o final
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        const bs = 1;
+                        buscaSimples(bs);
+                    }
+                };
+            }
+
+            if (n === 3) {
+                window.onscroll = function () {//Chama a função "buscaSimples" quando a pagina é rolada até o final
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        const ba = 1;
+                        buscaAvancada(ba);
+                    }
+                };
+            }
+
+        }
+
+
+        var posicaoAtualGeral = 0;
+        var posicaoAtualBuscaSimples = 0;
+        var posicaoAtualBuscaAvancada = 0;
+    </script>
+
+</body>
+
+</html>

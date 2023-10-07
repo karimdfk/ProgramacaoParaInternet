@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+
+    <style>
+        #principal {
+            margin: 0 auto;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="principal" class="container">
+
+        <h1 style="padding: 10px 0px; margin: 10px 0px;">Testando API RESTful</h1>
+
+        <form action="form.php" method="post">
+            <div class="row">
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" id="cep" class="form-control">
+            </div>
+
+            <div class="row">
+                <label for="rua" class="form-label">Rua</label>
+                <input type="text" id="rua" class="form-control">
+            </div>
+
+
+            <div class="row">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input type="text" id="bairro" class="form-control">
+            </div>
+
+            <div class="row">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" id="cidade" class="form-control">
+            </div>
+
+            <div class="row">
+                <button id="btnGET" type="button" style="margin-top: 15px;">
+                    Buscar Endereço Pelo CEP (GET)
+                </button>
+            </div>
+
+            <div class="row">
+                <button id="btnPOST" type="button" style="margin-top: 15px;">
+                    Criar Novo (POST)
+                </button>
+            </div>
+
+            <div class="row">
+                <button id="btnDELETE" type="button" style="margin-top: 15px;">
+                    Apagar Pelo CEP (DELETE)
+                </button>
+            </div>
+
+            <div class="row">
+                <button id="btnLISTA" type="button" style="margin-top: 15px;">
+                    Listar Todos Os Endereços
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <script>
+
+        async function enviaGET(cep) {   //função definida como async, permitindo a execução assíncrona com o uso do await
+
+            try {
+                let response = await fetch("address/" + cep);//Faz a requizição php de modo assíncrono 
+                if (!response.ok) throw new Error(response.statusText); //Caso o código retornado não esteja na faixa de sucesso(200 a 299), envia o erro para ser tratado no catch
+                var endereco = await response.json(); // Caso receba a string no formato JSON corretamente, transforma essa string em um objeto JS
+                console.log(endereco);
+
+                const divprin = document.querySelector("#principal");
+                const novaDiv = document.createElement("div");
+                const novoP = document.createElement("p");
+
+                novoP.innerText = endereco.cep + " " + endereco.rua + " " + endereco.bairro + " " + endereco.cidade;
+                novaDiv.appendChild(novoP);
+                divprin.appendChild(novaDiv);
+            }
+            catch (e) {//Faz o tratamento dos erros dentro do try
+                console.error(e);
+                return;
+            }
+        }
+
+        async function enviaPOST() {   //função definida como async, permitindo a execução assíncrona com o uso do await
+
+            const inputCep = document.querySelector("#cep");
+            const inputRua = document.querySelector("#rua");
+            const inputBairro = document.querySelector("#bairro");
+            const inputCidade = document.querySelector("#cidade");
+
+            const formulario = {
+                cep: inputCep.value,
+                rua: inputRua.value,
+                bairro: inputBairro.value,
+                cidade: inputCidade.value
+            }
+
+            const options = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formulario)
+            }
+
+            try {
+                let response = await fetch("address", options);//Faz a requizição php de modo assíncrono 
+                if (!response.ok) throw new Error(response.statusText); //Caso o código retornado não esteja na faixa de sucesso(200 a 299), envia o erro para ser tratado no catch
+            }
+            catch (e) {//Faz o tratamento dos erros dentro do try
+                console.error(e);
+            }
+        }
+
+        async function enviaDELETE(cep) {   //função definida como async, permitindo a execução assíncrona com o uso do await
+
+            const options = {
+                method: "DELETE"
+            }
+
+            try {
+                let response = await fetch("address/" + cep, options);//Faz a requizição php de modo assíncrono 
+                if (!response.ok) throw new Error(response.statusText); //Caso o código retornado não esteja na faixa de sucesso(200 a 299), envia o erro para ser tratado no catch
+                var endereco = await response.json(); // Caso receba a string no formato JSON corretamente, transforma essa string em um objeto JS
+
+            }
+            catch (e) {//Faz o tratamento dos erros dentro do try
+                console.error(e);
+                return;
+            }
+        }
+
+        async function enviaLISTA() {   //função definida como async, permitindo a execução assíncrona com o uso do await
+
+            try {
+                let response = await fetch("address");//Faz a requizição php de modo assíncrono 
+                if (!response.ok) throw new Error(response.statusText); //Caso o código retornado não esteja na faixa de sucesso(200 a 299), envia o erro para ser tratado no catch
+                var endereco = await response.json(); // Caso receba a string no formato JSON corretamente, transforma essa string em um objeto JS
+
+                const divprin = document.querySelector("#principal");
+                const novaDiv = document.createElement("div");
+                const novoP = document.createElement("p");
+
+                novoP.innerText = "Lista de todos os endereços";
+                novaDiv.appendChild(novoP);
+
+                for (let elem of endereco) {
+                    console.log(elem);
+
+                    const novaDiv2 = document.createElement("div");
+                    const novoP2 = document.createElement("p");
+
+                    novoP2.innerText = elem.cep + " " + elem.rua + " " + elem.bairro + " " + elem.cidade;
+                    novaDiv2.appendChild(novoP2);
+                    novaDiv.appendChild(novaDiv2);
+                }
+
+                divprin.appendChild(novaDiv);
+            }
+            catch (e) {//Faz o tratamento dos erros dentro do try
+                console.error(e);
+                return;
+            }
+        }
+
+        window.onload = function () {
+            const btnGET = document.querySelector("#btnGET");
+            const btnPOST = document.querySelector("#btnPOST");
+            const btnDELETE = document.querySelector("#btnDELETE");
+            const btnLISTA = document.querySelector("#btnLISTA");
+
+            const inputCep = document.querySelector("#cep");
+
+
+            btnGET.onclick = () => enviaGET(inputCep.value);
+            btnPOST.onclick = () => enviaPOST();
+            btnDELETE.onclick = () => enviaDELETE(inputCep.value);
+            btnLISTA.onclick = () => enviaLISTA();
+        }
+
+    </script>
+</body>
+
+</html>

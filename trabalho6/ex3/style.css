@@ -1,0 +1,42 @@
+body {
+    background-color: #ddd;
+}
+
+.blocoCentral {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+    padding: 20px;
+
+    box-shadow: 0 0 3px gray;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.caixaDeTexto {
+    text-align: center;
+}
+
+button {
+    color: red;
+    background-color: rgb(179, 213, 235);
+    border: 0px;
+    float: right;
+    cursor: pointer;
+    font-size: smaller;
+}
+
+li {
+    background-color: rgb(179, 213, 235);
+    margin: 3px;
+    padding: 4px 12px;
+    border: 1px solid rgb(176, 142, 255);
+    border-radius: 3px;
+}
+
+ol {
+    padding: 0px 0px 0px 10px;
+}

@@ -1,0 +1,27 @@
+body {
+    background-color: #ddd;
+}
+
+#principal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+}
+
+form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+button {
+    width: 20%;
+    height: 15px;
+    margin: 10px 120px 0px 120px;
+}
